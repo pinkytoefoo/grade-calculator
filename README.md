@@ -1,6 +1,6 @@
 # Grade Calculator
 
-**Image**: is [quiz1_hist.png](quiz1_hist.png)
+**Image**: is [quiz1_hist.png](quiz1_hist.png), or see visual below
 
 ## Outputs
 #### Option 3
