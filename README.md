@@ -4,7 +4,7 @@
 
 ## Outputs
 #### Option 3
-```bash
+```
 1. Student grade
 2. Assignment statistics
 3. Assignment graph
@@ -15,7 +15,7 @@ What is the student's name: Quiz 1
 ![quiz1 hist](quiz1_hist.png)
 
 #### Option 2
-```bash
+```
 1. Student grade
 2. Assignment statistics
 3. Assignment graph
@@ -28,7 +28,7 @@ Max: 86%
 ```
 
 #### Option 1
-```bash
+```
 1. Student grade
 2. Assignment statistics
 3. Assignment graph
