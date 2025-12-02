@@ -14,7 +14,7 @@ What is the student's name: Quiz 1
 ```
 ![quiz1 hist](quiz1_hist.png)
 
-#### Option 1
+#### Option 2
 ```bash
 1. Student grade
 2. Assignment statistics
@@ -23,8 +23,8 @@ What is the student's name: Quiz 1
 Enter your selection: 2
 What is the assignment name: Quiz 1
 Min: 56%
-Max: 86%
 Avg: 72%
+Max: 86%
 ```
 
 #### Option 1
