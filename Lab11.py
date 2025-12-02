@@ -26,15 +26,26 @@ submissions/<hash>.txt
 def parse_submission(data: str):
     return tuple(data.split("|"))
 
+def get_quiz_info():
+    quizes = {}
+    with open("data/assignments.txt") as f:
+        data = f.read().splitlines()
+        # only check assignmnet name lines
+        for i, name in enumerate(data):
+            if (i+1) % 3 == 0 and name:
+                quizes[data[i-1]] = float(data[i])
+    
+    return quizes
+
 def main():
+    quizzes = get_quiz_info()
     print(menu_options)
     option = input("Enter your selection: ")
 
     # ------------ OPTION 1 ------------
     if option == "1":
         student_name = str(input("What is the student's name: "))
-        final_grade: int = 0
-        assignments = 0
+        
         student_id = None
         with open("data/students.txt", "r") as f:
             for line in f.readlines():
@@ -43,22 +54,34 @@ def main():
                     student_id = line[:3]
                     # print(student_id)
         
+        if student_id == None:
+            print("Student not found")
+            return
+
+        grades = {"quizzes": [], "labs": [], "projects": []}
+        # code quality could be much better but i need to get this done quick
         for filename in os.listdir("data/submissions"):
             with open(f"data/submissions/{filename}", "r") as f:
                 data = f.read().strip()
                 # ignore assignment id
-                sid, _, grade = parse_submission(data)
+                sid, aid, grade = parse_submission(data)
                 if sid == student_id:
-                    final_grade += int(grade)
-                    assignments += 1
+                    grade_percent = int(grade) / 100
+                    if quizzes[aid] == 25:
+                        grades["quizzes"].append(float(grade_percent * quizzes[aid]))
+                    elif quizzes[aid] == 50:
+                        grades["labs"].append(float(grade_percent * quizzes[aid]))
+                    elif quizzes[aid] == 125:
+                        grades["projects"].append(float(grade_percent * quizzes[aid]))
         
-        if final_grade != 0:
-            final_grade = int(final_grade / assignments)
-            print(f"{final_grade}%")
-            return
-        
-        print("Student not found")
+        total_earned = sum(grades["quizzes"]) + sum(grades["labs"]) + sum(grades["projects"])
+        quiz_count = len(grades["quizzes"])
+        lab_count = len(grades["labs"])
+        proj_count = len(grades["projects"])
+        total_possible = quiz_count * 25 + lab_count * 50 + proj_count * 125
 
+        final_grade = int(round((total_earned / total_possible) * 100, 0))
+        print(f"{final_grade}%")
 
     # ------------ OPTION 2 ------------
     if option == "2":
@@ -74,7 +97,7 @@ def main():
                     # print(assignment_id)
         
         # set min to 100 so that we only go lower and max at 0 so we only go higher
-        grades_stats = {"Min": 100, "Max": 0, "Avg": 0}
+        grades_stats = {"Min": 100, "Avg": 0, "Max": 0}
         avg = 0
         count = 0
         for filename in os.listdir("data/submissions"):
