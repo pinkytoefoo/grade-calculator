@@ -1,19 +1,18 @@
 # Grade Calculator
-****
 
 **Image**: is [quiz1_hist.png](quiz1_hist.png), or see visual below
 
 ## Outputs
-#### Option 1
-```shell
+#### Option 3
+```bash
 1. Student grade
 2. Assignment statistics
 3. Assignment graph
 
-Enter your selection: 1
-What is the student's name: Michael Potter
-67%
+Enter your selection: 3
+What is the student's name: Quiz 1
 ```
+![quiz1 hist](quiz1_hist.png)
 
 #### Option 1
 ```bash
@@ -28,13 +27,13 @@ Max: 86%
 Avg: 72%
 ```
 
-#### Option 3
+#### Option 1
 ```bash
 1. Student grade
 2. Assignment statistics
 3. Assignment graph
 
-Enter your selection: 3
-What is the student's name: Quiz 1
+Enter your selection: 1
+What is the student's name: Michael Potter
+67%
 ```
-![quiz1 hist](quiz1_hist.png)
